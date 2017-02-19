@@ -1,0 +1,9 @@
+Package: mscidata
+Type: Package
+Title: TWO DATA SETS; USA AND MINVOL
+Version: 0.1.0
+Author: Pauline
+Maintainer: Pauline <paunimo@gmail.com>
+Description: Contains two data sets; usa and minvol
+License: None
+LazyData: TRUE
