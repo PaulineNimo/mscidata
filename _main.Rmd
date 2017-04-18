@@ -1,0 +1,314 @@
+--- 
+title: "Thesis"
+author: "John Gilheany"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::pdf_book
+documentclass: book
+bibliography: [book.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Thesis stuff"
+---
+
+# Opening Comments
+I woud like to thank David Kane and Michael Parzen for their contribution and help on my thesis. This would not have been possible without their assistance. 
+
+<!--chapter:end:index.Rmd-->
+
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Introduction {#intro}
+
+I would like to start by introducing the main index this thesis will be focusing on, USMV. The MSCI Minimum Volatility Index (USMV) is intended to have a lower beta, lower volatility, lower cap bias, and contain more stocks with less risk than its parent index. It is rebalanced twice a year, on the last trading days of May and November. The index typically has around 180 constituents, with an average of 20 new additions and 14 deletions every 6 months when rebalancing occurs. Over the last five, years, the number of additions has ranged from 12 to 25, while the deletions have been between 10 and 19. Changes to the index are usually announced nine trading days before they are set to take place. 
+
+Using the Barra Open Optimizer, USMV creates a minimum variance portfolio of low risk stocks, as a subset from its parent index, EUSA. Using this estimated security covariance matrix, the MSCI Minimum Volatility Index is the product of the lowest absolute volatility, considering the constraints.  Moreover, these additions are simply a relabeling of existing stocks in the parent index, and do not include new additions to the parent index. The low-risk stocks chosen to be in USMV are determined by a set of constraints, like maintaining a certain sector or country weight relative to the parent index.  
+
+There are many specific constraints to this index. The first is that an individual stock cannot exceed 1.5% or 20 times the weight of the stock in the parent index. The minimum weight of a security in the index is also capped at 0.05%. USMV also aims to keep the weight of specific countries within a 5% range of the weight in the parent index, or 3 times the weight of the country in the parent index. Sector weights of USMV also cannot deviate more than 5% from the sector weights in the parent index. One way turnover of the index is also maxed at 10%. Thus, taking into account these constraints, the Barra Open Optimizer creates the lowest absolute volatility portfolio possible. 
+
+<!--chapter:end:01-intro.Rmd-->
+
+# Literature Review
+
+## High Returns from Low Risk By Pim van Vliet and Jan De Koning
+One of the most widely believed tenants of finance is the concept that with more risk comes more reward. However, looking at historical market returns, this does not appear to be the case. Over an 86-year period from 1929, low volatility stocks outperformed high volatility stocks by a factor of 18. If both portfolios started off with the same $100, the low volatility portfolio end value would be $395,000, while the high volatility portfolio would be worth just $21,000. Low risk stocks returned 10.2% annually whereas the high risk stocks returned just 6.4% annually. This difference of 3.8% is striking, and presents an anomaly in the field of finance.  
+
+This begs the question of how a portfolio of lower volatility stocks can outperform higher volatility stocks over a long period of time. The primary way this occurs is that the low volatility portfolio loses less during times of financial stress. For example, in 1932 following the Great Depression, it was observed that the high volatility portfolio shrunk from $100 in value to $5 in value, while the low volatility portfolio shrunk from $100 to $30. Since the low volatility portfolio is able to lose less money, it is able to grow capital more effectively than the high volatility portfolio. In this example, the annualized volatility of the low risk portfolio was 13%, and the annualized volatility of the high risk portfolio was around 2.5 times that, at 36%. In addition to being more risky, the high volatility portfolio was outperformed by 18 times. 
+
+Thus, it seems very counterintuitive that fund managers and investors would not only invest in low risk stocks. Part of understanding this comes from interpreting what risk is defined as in the financial community. Risk is not necessarily defined as losing money, as it may be for an individual, but instead underperforming a benchmark. Volatility is also an important concept to understand. Volatility is an important measure of financial risk, as it comes from the price fluctuations of a stock or investment. Volatility is also one of the best indicators of bankruptcy. Taking some risk does pay off, as the relationship between risk and return starts off slightly positive before leveling off and becoming negative. 
+Many researchers focus on short-term periods when analyzing stock returns instead of longer term for a couple of reasons. The first reason many focus on “single period returns”, which in most academic studies is just a one month period, is because this takes away the significance of compounding. The longer the investment period, the more risk one takes in hurting long term returns through compounding. By not fully including the magic “return upon return” effect of compounding, a high-risk portfolio in this book performs more than 6% better per year. For example, if in month a portfolio worth $100 drops 50% to $50, then the next month increases 50% to $75, the investment return is dependent on how one divides the time period. Looking at it on a monthly basis, even though the portfolio lost $25, the net return would be -50% +50%, or 0%. Looking at it on a long term basis, the net return was -25%. 
+
+David Blitz, the head of quantitative equity research at Robeco, discusses this different perspective as somewhat due to the need to benchmark the performance of an investment manager. This is a concept known as “relative” risk. In the examples above, everything has been in respect to absolute risk - that is how much money is being gained or lost due to overall stock movements, with regard to the starting amount of money invested. Volatility, in itself, captures these changes in the price of a stock, and is an absolute risk measurement. Many institutional investors do not look at risk on an absolute level, as a retiree or mom and pop investor may, but instead look at the risk of a portfolio with respect to market or some other widely accepted benchmark. For these investors, the risk is not as much about losing money, rather is more about lagging the market or their peers. Investing is very much a relative game. If a portfolio drops 20% while the market drops 40%, this is seen as a much better outcome than if a portfolio goes up 20% while the market goes up 40%. Thus, a portfolio that moves closely with the market has a very low relative risk. This risk can be calculated as volatility by looking at the relative price movements, instead of the absolute price movements. 
+
+Investment professionals focus on relative risk for a number of reasons, one of which is the fact that they are not managing their own money. They need to prove to their bosses and clients that they are above average in their job. If a particular benchmark cannot be beaten by these investors, clients may ask why pay for them to manage their money when they could put it in a low-fee or no-fee mutual fund. This is one of the reasons that institutional investors need to compare their performance to some benchmark. Thus, the focus for investors is return and relative risk. Adding low risk stocks to the portfolio causes relative risk to increase a lot, making it an unappealing investment because low absolute risk inherently causes high relative risk. A low risk portfolio only makes sense if absolute risk is what one cares about. Thus, for those investors who don’t care about relative risk and just absolute risk, low risk stocks are a great investing opportunity.
+
+In addition to the reasons mentioned, there are several additional reasons why some investors are not attracted to low-risk stocks. Eric Falkenstein, a renowned author in the low volatility investing realm, wrote that “envy is at the root of the investment paradox.” Some investors don’t recognize the significance of compounding returns. Others do, but are unable to utilize the paradox due to relative risk and career pressures. Analysts who choose big winners are more likely to get recognized than those who pick safer stocks with lower upside potential, and funds that pick the right high risk stocks also see more reward in an increase in AUM. Moreover, some people do not invest in low risk stocks because they have less appeal of high risk stocks, where they think they can make money easily and quickly. These high risk stocks are more “sexy” and have a “lottery ticket” element that attracts investors with the appeal of a big payday. 
+
+
+## Betting Against Correlation: Testing Theories of the Low-Risk Effect
+
+A recurring phenomena in finance, is the observation of the “low-risk effect.” This is the idea that lower risk or lower volatility stocks, tend to have higher alpha than higher risk or higher volatility stocks. In trying to understand the reason this anomaly occurs, are two possible explanations. The first looks at at whether this is caused by leverage constraints, meaning measurement using systematic risk. The second focuses on the behavioral effects, or idiosyncratic risks. One of the main issues with prior research, is that a lot of the low-risk factors are correlated and interrelated, making it hard to isolate certain factors or effects. In this paper, the global data was used, with a couple new factors meant to control for existing factors. 
+
+Previous studies, like one by Adrian, Etula, and Muir in 2014, showed a link between return to the BAB (Betting Against Beta) factor and financial intermediary leverage. Many of these factors, though, including BAB, generally exhibit the “low-risk effect” and are thus very hard to differentiate between. Thus, this paper decided to do just that, by breaking down BAB into two other factors: betting against correlation (BAC) and betting against volatility (BAV). BAC is accomplished through longing stocks with low correlation to the market, and shorting those with high correlation to the market, while trying to match the volatilities of both the long and short portfolios. BAV is achieved in a similar manner, except instead of longing and shorting correlation, volatility is used, and correlation is kept constant. 
+
+To address the behavioral explanation, the paper looks at some prior factors from studies done by Ang, Hodrick, Xing, and Zhang in 2006 and 2009. The first study found stocks with low idiosyncratic volatility (IVOL) have a greater risk-adjusted return, while the second found that a low maximum return (LMAX), a measure of idiosyncratic skewness, is associated with greater risk-adjusted returns. This paper kept the focus on LMAX and IVOL, but added another factor, scaled MAX (SMAX), which longs stocks with a low MAX return divided by ex ante volatility, and then shorts stocks with a high MAX return divided by ex ante volatility. This focuses on the lottery demand, holding volatility relatively constant and only focusing on the distribution of the returns. Margin debt held by investors, and investor sentiment were also noted. 
+
+In the paper, 58,415 stocks from the MSCI World Index, from 24 countries between January 1926 and December 2015 were covered. BAB and BAC ended up being very successful in controlling for the other factors that could influence the “low-risk effect.” For all stocks, the BAC factor produced a significant six-factor alpha that was nearly independent of the other low-risk factors studied. In terms of explaining the behavioral side with factors, SMAX was the only truly great, resilient measure used. The rest generally had higher turnover, and were consequently very susceptible to microstructure noise. SMAX attained positive risk-adjusted returns in the U.S. but negative risk-adjusted returns globally, which was seen with some other idiosyncratic risk factors. The paper showed that systematic low-risk factor generally tended to outperform behavioral risk factors, especially when considering turnover and time period length.  All in all, the low-risk effect was believed to be driven by multiple factor effects, meaning both leverage constraints and the demand for lottery could play a role in effecting this. However, leverage constraint effects were a bit stronger, especially internationally.
+
+
+## Price Response to Factor Index Additions and Deletions 
+
+Some of the driving fundamental assumptions of finance is the flat demand curve for stocks, where risk is the main driver and each stock has a perfect substitute. However, this concept has been questioned for the past few years, with literature picking up on stocks with show supply shocks and checking how this affects their price. The literature has shown several instances where large block sales of stock has negatively affected its price. This was often due to information contamination, which is new, significant information about the company in the market. This information often reflects fundamental changes in the company, and if is is negative, will understandably trigger block sales. Thus, the price change is less due to the supply shock, and moreso due to the fundamental change in the company’s value (like a scandal or earnings report).
+
+However, interesting patterns that have not yet been fully explained have been observed regarding S&P 500 company addition and deletions. When companies are added or removed from the index, it is purely mechanical, and usually not due to some drastic fundamental change in the company. Assuming the market is efficient, the demand for stocks should not change due to being added or removed from an index, but several studies have shown that it does. Harris and Gurel (1986), Shleifer (1986), Beneish and Whaley (1996), Chen, Noronha, and Singal (2004) all show how new additions to the S&P come with higher than normal returns for that company. Though they agree on the price movement, the studies tend to have a hard time agreeing on the reason for this price movement. Some possible explanations include compensation for providing liquidity, better monitoring for investors when a company is added to a reputable and large index, and higher analyst coverage leading to more information and analysis available on the company. One primary concern is whether or not index reshuffling is an information-free event - that is, whether a company being added or removed adds information to the market about the company. 
+
+In this paper, the authors look at factor index rebalancing for an information-free event. Factor indices are part of a parent index of many other stocks, and are constructed in a mechanical way that is publically available and usually based on ranking stocks off a particular ratio of characteristic. Looking at the MSCI Minimum Volatility index, stocks returns were recorded for the stocks that had been added/dropped. It was found that the cumulative return from announcement to the effective day was 1.07% for stocks added with a significant t-statistic of 7.16, with 62% of the stocks exhibiting a positive cumulative abnormal return. Of the 1.07% increase, 0.63% of it was gained the following day, indicating that a large part of the increase is from an increase in demand from index funds. 0.31% of the return is lost five days after the rebalancing, but generally the price tends to stabilize afterwards after ten days. Thus, 68% of the price increase is permanent, while the other 32% is temporary and lost after a few days. This can be due to a number of reasons including a liquidity premium charged by the stock’s owner or arbitrage activity. Average trading volume was also significantly more for stocks that were recently added to the index. Between the announcement and actual day of adding the stock, the average trading volume was 30% higher than normal, with a significant t-statistic of 3.81. Moreover, there is a 74% increase in volume for the day prior to the actual adding of the security. A very similar phenomena occurs with stocks set to be dropped from the MSCI Minimum Volatility Index. From the announcement of a stock being dropped to the day before it is actually deleted from the index, the total cumulative abnormal return is -0.91%, and -0.57% of this comes the day right before. After the stocks are deleted, 64% of them have a negative return the following day, and only 0.49% of the -0.91% is regained after three weeks. Trading volume also spikes 46% on the day prior to removal from the index. After three weeks, it returns back to within 1% of the normal trading volume.
+
+These findings imply that once a security is added to a factor index, the demand curve shifts to the right, moving the equilibrium. The trading volume change is likely due to index funds buying or selling massive amounts of the stocks that will be added or removed. Moreover, it was found that the amount of the return is also directly related to the weighting of the volume of stocks entering or leaving the factor index. All in all, these findings suggest an index arbitrage opportunity if the index additions or deletions can be predicted.
+
+
+## Benchmarks as Limits to Arbitrage: Understanding the Low-Volatility Anomaly
+Low-beta and low-volatility stocks have outperformed high-beta, high-volatility stocks from 1968-2008, combining great returns with low downturns. This can be explained by behavioral models of security prices. First is the idea that investors have a preference for “lotteries” and a bias of overconfidence creates a higher demand for higher-volatility securities. Second is the idea that this arbitrage opportunity is very limited, as the need to benchmark creates a greater demand for higher risk stocks, while discouraging investments in low-beta, low-volatility stocks. Several other papers have tried to explain this seemingly misunderstood phenomena, including Karceski in 2002, where is was noted that an extrapolation bias could cause mutual fund managers to care more about overperforming in a bull market, than underperforming in a bear market. This understandably, increases the market’s appetite for risky stocks with high reward potential. This paper focuses on the distortions caused specifically by benchmarking.
+
+In the paper, the authors used 41 years of CRSP data, ranging from January 1968 – December 2008. Using the top 1,000 stocks by market cap, the five year trailing volatilities were calculated and returns were tracked. A dollar investment from 1968 made its way to $59.55, or $10.12 in real terms when accounting for inflation. On the other hand, the highest volatility portfolio went from a dollar in value to 58 cents during the period, with a real value of just around 10 cents when considering inflation. When using beta as a measure for risk, the finding was very similar. In the lowest-beta portfolio, a dollar grew to $60.46 in nominal value, or $10.28 in real value after inflation. The highest-beta portfolio grew from a dollar to $3.77 in nominal terms, or $0.64 in real terms after inflation. This held true for large cap companies, but the discrepancy was even higher for smaller cap companies. Generally, the low-risk portfolios also grew much more steadily and constant, without many drawdowns. To add on to this as well, the portfolio values did not include transaction costs. The high-risk portfolios cost more to rebalance on a monthly level, as was done in the paper, than the low-risk portfolios, indicating this anomaly is more pronounced that initially reported. These findings are not novel, but this paper attempts to explain them in a new way. Many theories add evidence for disproving the Capital Asset Pricing Model (CAPM), and even suggest that beta may not be the correct measure of risk. Other models relating risk and return, however, have had difficulty gaining acceptance and widespread usage in the finance industry. 
+
+One theory explored in detail is an investor’s irrational preference for high-volatility stocks. First, many investors have a natural preference for lotteries, even though there is a general aversion towards loss. If a stock has a positive skew, that is a larger probability of a large positive payoff than probability of a small payoff, investors typically are very interested. Though skew is not the same as volatility, in their paper in 2010, Boyer, Mitton, and Vorkink make a strong case for how expected skewness is a proxy for volatility. Another idea is representativeness, or that Bayes’ rule and probability theory are often not natural to people. One example of this is, selectively looking at a few speculative investments that have turned out to be massive successes, without considering the numerous failures. Overconfidence has also been tied to a preference for volatile stocks; optimists are generally more aggressive than pessimists. 
+
+The need for benchmarking, especially among institutional investors, is also believed to heavily play into the anomaly. In fact, from the period when institutional investors managed 30% of all money to 60%, the anomaly intensified. This still begs the question as to why institutional investors do not buy more low-volatility stocks, and the answer has to do with benchmarking. The typical fund manager is judged for his/her “information ratio” (IR) which is the expected return difference between the manager and the expected return of the S&P 500, divided by the volatility of this return difference (tracking error). The goal of the investment manager is to maximize this information ratio, best as possible, through picking stocks. In 2009, Sensoy showed that over 61% of U.S. mutual fund managers are benchmarked against the S&P 500, while over 94% are benchmarked to some U.S. index benchmark. Moreover, SEC rules require mutual funds to compare their performance to some benchmark. This intuitively makes sense, as it allows investors to assess the skill and ability of managers in an unbiased way, and also allows fund managers a chance to differentiate themselves. 
+
+Investment managers without leverage will try to find mispriced stocks with a beta very close to market risk (beta of 1), overweighting positive-alpha stocks while underweighting negative-alpha stocks. When comparing the Sharpe ratio of large cap stocks for a low-volatility portfolio, it was quite high at 0.38. However, IR was a very low 0.08, showing this would be very tough for a fund manager to invest in. While Beta and volatility are undoubtedly very correlated, the study showed that beta is more related to the anomaly than volatility, especially with large cap stocks, which is what most fund managers disproportionately focus their invests in. Both volatility and beta play a significant role in this anomaly in smaller cap stocks. Looking at the period from 1968-2008, the top value strategy portfolios had an IR of 0.51, and top momentum strategy portfolios had an IR of 0.64. This is extremely high compared to the IR of low-volatility stocks in this period, which ranged from 0.08 to 0.17. 
+
+Overall, irrational investor preference for lotteries and high volatility stocks, as well as investment managers’ focus on benchmarks and IR flatten or even invert the relationship between risk and return as we know it. This has been shown by the study, and prior observations that the anomaly intensified with the increase in AUM of fund managers in the U.S. These reasons appear perennial, so the anomaly will likely not be going away anytime soon. One other factor to this is compounding of the low-volatility portfolio. Since it suffers fewer drawdowns, this means the portfolio is able to experience more stable and upward growth. 
+
+
+## Betting Against Beta
+In this paper, a real-world resembling model is created with leverage and margin constraints in 55,600 stocks from 20 global stock, bond, credit, and futures markets. Some agents in this model cannot use any leverage, and some have limited margin constraints, much like many investors and fund managers. 
+
+Many mutual funds, pension funds, and individual investors are constrained by the amount of leverage they can take on, such that instead of investing in a portfolio yielding the highest Sharpe Ratio, they are forced to overweight portfolios with higher risk stocks. This suggests fund managers hold high-beta stocks to a lower risk adjusted return standard than low-beta stocks, which would require leverage. Thus, if one cannot leverage or has significant leverage constraints, then this agent will overweight riskier securities. The model was able to empirically show this in the equities, bonds, and futures markets. This was done by sorting portfolios by betas, and realizing alphas and sharpe ratios declining with increases in portfolio beta. 
+
+Moreover, if one can leverage without constraint, then they would underweight high-beta assets and overweight low-beta assets. Betting against beta (BAB) factors help explain this better. A BAB factor is a portfolio longing low-beta securities (leveraged to a beta of 1), shorting high-beta assets (deleveraged to a beta of 1). Hence, a BAB factor is market neutral. The model in the paper predicts that this portfolio will have a positive return, that increases with the spread in the betas and tightness of leverage constraints. Thus, longing low-beta and shorting high-beta yields significant, and positive risk-adjusted returns. This was observed in the model by looking at U.S., developing, and international equity markets and observing that the BAB factor yielded a Sharpe ratio that was double its value effect, and 40% greater than momentum. The BAB factor had very high risk adjusted returns, and during four twenty-year periods between 1926 and 2012, produced significant positive returns. This generally held across other asset classes, including credit and treasury bond markets. 
+
+When a leverage constraint is met or surpassed, and the agent needs to deleverage, the BAB factor portfolio experiences negative returns, but its expected future returns increase. This was once again shown with a time series with spreads of various funding constraints. 
+
+Another central idea of the model was that increased funding liquidity risk compresses betas toward one. This was proven by looking at the volatility of funding constraints as funding liquidity risk, and the end result was that the dispersion of betas when funding liquidity risk is high, was much lower than when funding liquidity risk is low. 
+
+Finally, the model showed that investors that are more constrained are forced to overweight riskier securities, while investors without such constraints can overweight lower-risk securities. Studying a number of stock portfolios from constrained investors, most fund managers and individual investors’ portfolios have a beta greater than one. On the flip side, many PE firms that perform an LBO get firms with a beta below one, and apply leverage. Great investor Warren Buffett even bets against beta, as many of his investments are leveraged, low-beta stocks.
+
+
+## The Low-Risk Anomaly: A Decomposition into Micro and Macro Effects
+The low beta anomaly can be broken up into micro and macro effects. The micro effects include picking low beta stocks, while the macro effects are picking low beta countries or industries. In this paper, the micro effects were recorded by creating long-short portfolios of stocks, holding constant country and industry risk. The macro effects were observed through long-short portfolios of various countries and industries, holding stock level risk constant. Studying a number of stocks within 29 industries and 31 different developed countries, the macro and micro effects were observed, and both together were shown to play an important role in the low risk anomaly. 
+
+Micro selection of stocks, that is constructing a low risk portfolio of stocks, holding country and industry constant, showed that risk could be significantly decreased without a significant decrease in return. Macro selection, especially with regards to the country chosen, causes greater returns with small differences in risk. These findings have pretty significant implications, as this indicates that people seeking arbitrage opportunities through mispricing of industry or sector ETFs may not be as feasible or profitable as one may think. There is more of an opportunity exploiting the micro effects of individual stock selection. 
+
+It was found that using industry beta to predict future stock betas was possible, but not as effective as just using historical stock betas. However, industry beta information without stock information does improve risk-adjusted returns, just not as to the same level as with stock information. The paper also goes into detail trying to isolate pure industry effects and pure stock effects. Pure industry effects are the average differences between high and low beta industries, while holding constant stock risk. Pure stock risk is the opposite of that, calculating the average difference between high bet and low beta stocks, keeping industry risk constant. In the end, finding low-risk portfolios using selection of low risk stocks keeping industry constant was around four times more effective than using industries and keeping stock risk constant. Using the historical betas of both together, however, has more predictive power than either one alone. 
+
+Next, looking at 31 developed countries including Canada, France, Germany, Japan, and Singapore, the paper worked to decompose the low risk anomaly into country and stock specific effects. Similar to the industry findings, country beta was able to predict stock betas to a certain extent, but not as well as historical stock betas were. Looking only at country betas yielded around half the risk reduction and two-thirds the risk adjusted return improvement, as compared to stock betas. This study implies that predicting risk of individual stocks is in itself very hard when only given data on country or industry risk, but when given all the data can have much more predictive power. 
+
+
+<!--chapter:end:02-literature.Rmd-->
+
+# Data Collection and Summary Statistics
+
+Data was collected from ishares.com, and compiled from 10/31/2011 to 1/5/2017, for EUSA and USMV.
+
+```{r}
+# Load Packages and View the Data
+devtools::install_github("johngil/mscidata")
+library(mscidata)
+library(ggplot2)
+data(usa)
+data(minvol)
+
+## Summary statistics of EUSA Data
+head(usa)
+tail(usa)
+summary(usa)
+
+## Summary statistics of USMV Data
+head(minvol)
+tail(minvol)
+summary(minvol)
+```
+
+<!--chapter:end:03-data_collection.Rmd-->
+
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Data Analysis 
+
+## Sector Weights
+First, sector weights were calculated over time for both EUSA and USMV. Plots were made by sector and displayed to compare the relative weights of EUSA and USMV. 
+
+*Sector Weight Summary Statistics:*
+
+```{r}
+data(usa_percent)
+data(minvol_percent)
+
+## Summary statistics of EUSA sector weights
+head(usa_percent)
+tail(usa_percent)
+summary(usa_percent)
+
+## Summary statistics of USMV sector weights
+head(minvol_percent)
+tail(minvol_percent)
+summary(minvol_percent)
+```
+
+*Sector Weights for EUSA and USMV:*
+
+```{r, echo = FALSE}
+library(ggplot2)
+library(mscidata)
+
+## Energy
+Eng1 <- usa_percent[which(usa_percent$sector_name=="Energy"), ]
+Eng2 <- minvol_percent[which(minvol_percent$sector_name=="Energy"), ]
+ggplot(Eng1, aes(date, percent, colour = "USA")) + geom_line() +  
+ggtitle("EUSA and USMV Energy Sector Weights") + xlab("Time") + ylab("Sector Weight") +
+geom_line(data = Eng2, aes(x=date, y=percent, colour="Min Vol"),show.legend = TRUE)
+
+## Finacials
+Fin1 <- usa_percent[which(usa_percent$sector_name=="Financials"), ]
+Fin2 <- minvol_percent[which(minvol_percent$sector_name=="Financials"), ]
+ggplot(Fin1, aes(date, percent, colour = "USA")) + geom_line() + 
+ggtitle("EUSA and USMV Financial Sector Weights") + xlab("Time") + 
+ylab("Sector Weight") + 
+geom_line(data = Fin2, aes(x=date, y=percent, colour="Min Vol"),show.legend = TRUE)
+
+## Consumer Staples
+ConStap1 <- usa_percent[which(usa_percent$sector_name=="Consumer Staples"), ]
+ConStap2 <- minvol_percent[which(minvol_percent$sector_name=="Consumer Staples"), ]
+ggplot(ConStap1, aes(date, percent, colour = "USA")) + geom_line() + 
+ggtitle("EUSA and USMV Consumer Staples Sector Weights") + xlab("Time") + 
+ylab("Sector Weight") + geom_line(data = ConStap2, aes(x=date, y=percent, 
+colour="Min Vol"),show.legend = TRUE)
+
+## Consumer Discretionary
+ConDis1 <- usa_percent[which(usa_percent$sector_name=="Consumer Discretionary"), ]
+ConDis2 <- minvol_percent[which(minvol_percent$sector_name=="Consumer Discretionary"), ]
+ggplot(ConDis1, aes(date, percent, colour = "USA")) + geom_line() + 
+ggtitle("EUSA and USMV Consumer Discretionary Sector Weights") + xlab("Time") + 
+ylab("Sector Weight") + geom_line(data = ConDis2, aes(x=date, y=percent, 
+colour="Min Vol"),show.legend = TRUE)
+
+## Health Care
+Health1 <- usa_percent[which(usa_percent$sector_name=="Health Care"), ]
+Health2 <- minvol_percent[which(minvol_percent$sector_name=="Health Care"), ]
+ggplot(Health1, aes(date, percent, colour = "USA")) + geom_line() + 
+ggtitle("EUSA and USMV Health Care Sector Weights") + xlab("Time") + 
+ylab("Sector Weight") + geom_line(data = Health2, aes(x=date, y=percent, 
+colour="Min Vol"),show.legend = TRUE)
+
+## Industrials
+Ind1 <- usa_percent[which(usa_percent$sector_name=="Industrials"), ]
+Ind2 <- minvol_percent[which(minvol_percent$sector_name=="Industrials"), ]
+ggplot(Ind1, aes(date, percent, colour = "USA")) + geom_line() + 
+ggtitle("EUSA and USMV Industrials Sector Weights") + xlab("Time") + 
+ylab("Sector Weight") + geom_line(data = Ind2, aes(x=date, y=percent, 
+colour="Min Vol"),show.legend = TRUE)
+
+## Information Technology
+IT1 <- usa_percent[which(usa_percent$sector_name=="Information Technology"), ]
+IT2 <- minvol_percent[which(minvol_percent$sector_name=="Information Technology"), ]
+ggplot(IT1, aes(date, percent, colour = "USA")) + geom_line() + 
+ggtitle("EUSA and USMV Information Technology Sector Weights") + 
+xlab("Time") + ylab("Sector Weight") + geom_line(data = IT2, aes(x=date, y=percent,
+colour="Min Vol"),show.legend = TRUE)
+
+## Materials
+Mat1 <- usa_percent[which(usa_percent$sector_name=="Materials"), ]
+Mat2 <- minvol_percent[which(minvol_percent$sector_name=="Materials"), ]
+ggplot(Mat1, aes(date, percent, colour = "USA")) + geom_line() + 
+ggtitle("EUSA and USMV Materials Sector Weights") + xlab("Time") + 
+ylab("Sector Weight") + geom_line(data = Mat2, aes(x=date, y=percent, 
+colour="Min Vol"),show.legend = TRUE)
+
+## Utilites
+Util1 <- usa_percent[which(usa_percent$sector_name=="Utilities"), ]
+Util2 <- minvol_percent[which(minvol_percent$sector_name=="Utilities"), ]
+ggplot(Util1, aes(date, percent, colour = "USA")) + geom_line() + 
+ggtitle("EUSA and USMV Utilities Sector Weights") + xlab("Time") + 
+ylab("Sector Weight") + geom_line(data = Util2, aes(x=date, y=percent, 
+colour="Min Vol"),show.legend = TRUE)
+
+## Telecommunication Services
+Telecom1 <- usa_percent[which(usa_percent$sector_name=="Telecommunications"), ]
+Telecom2 <- minvol_percent[which(minvol_percent$sector_name=="Telecommunications"), ]
+ggplot(Telecom1, aes(date, percent, colour = "USA")) + geom_line() + 
+ggtitle("EUSA and USMV Telecommunications Sector Weights") + 
+xlab("Time") + ylab("Sector Weight") + geom_line(data = Telecom2, aes(x=date, 
+y=percent, colour="Min Vol"),show.legend = TRUE)
+```
+
+## EUSA Constituent Trailing Volatilities 
+Data was collected from the past 10 years of the EUSA index. The data was collected from 12/31/2006 to 12/30/2016, was collected from WRDS for the 908 historical constituents of the USA Equal Weight (EUSA) index, of which USMV is derived. Each tickers' 252-day (annual) trailing volatility was calculated and a month end spagetti plot was produced.
+
+```{r, echo = FALSE}
+library(ggplot2)
+library(mscidata)
+
+head(monthly_rolling_vol)
+tail(monthly_rolling_vol)
+summary(monthly_rolling_vol)
+
+# Spaggeti plot for monthly trailing vol
+ggplot(monthly_rolling_vol, aes(Date, Volatility, group = Ticker)) + geom_line()
+```
+
+## EUSA Constituent Trailing Betas 
+Data was collected from the past 10 years of the EUSA index. The data was collected from 12/31/2006 to 12/30/2016, was collected from WRDS for the 908 historical constituents of the USA Equal Weight (EUSA) index, of which USMV is derived. Each tickers' 252-day (annual) trailing beta was calculated and a month end spagetti plot was produced.
+
+```{r, echo = FALSE}
+library(ggplot2)
+library(mscidata)
+
+head(monthly_beta_values)
+tail(monthly_beta_values)
+summary(monthly_beta_values)
+
+# Spaggeti plot for monthly Beta
+ggplot(monthly_beta_values, aes(Date, Beta, group = Ticker)) + geom_line()
+```
+
+## EUSA Constituent Price to Book Ratios 
+Data was collected from the past 10 years of the EUSA index. The data was collected from 12/31/2006 to 12/30/2016, was collected from WRDS for the 908 historical constituents of the USA Equal Weight (EUSA) index, of which USMV is derived. Each tickers' Price to Book ratio was calculated in two ways, to ensure accuracy. 
+
+```{r, echo = FALSE}
+library(ggplot2)
+library(mscidata)
+
+head(book_value_data)
+tail(book_value_data)
+summary(book_value_data)
+```
+
+
+
+<!--chapter:end:04-data_analysis.Rmd-->
+
+# Bibliography 
+
+Vliet, P. V., & Koning, J. D. (2017). High returns from low risk: a remarkable stock market paradox.
+	
+Asness, C. S., Frazzini, A., Gormsen, N. J., & Pedersen, L. H. (2016). Betting Against Correlation: Testing Theories of the Low-Risk Effect.
+
+Huij, J., & Kyosev, G. (2016). Price Response to Factor Index Additions and Deletions.
+
+Baker, M., Bradley, B., & Wurgler, J. (2011). Benchmarks as limits to arbitrage: Understanding the low-volatility anomaly. Financial Analysts Journal, 67(1), 40-54.
+
+Frazzini, A., & Pedersen, L. H. (2014). Betting against beta. Journal of Financial Economics, 111(1), 1-25.
+
+Baker, M., Bradley, B., & Taliaferro, R. (2014). The low-risk anomaly: A decomposition into micro and macro effects. Financial Analysts Journal, 70(2), 43-58.
+
+
+
+<!--chapter:end:08-bibliography.Rmd-->
+

@@ -1,0 +1,20 @@
+Package: mscidata
+Type: Package
+Title: MSCI USA and Min Vol Data Analysis
+Version: 0.1.0
+Author: John Gilheany
+Maintainer: John Gilheany <johngilheany@gmail.com>
+Description: Contains MSCI USA (EUSA) and MSCI Min Vol (USMV) Data from 
+    2011-10-31 to 2017-01-05. It includes the weights of each stock in 
+    the index, its sector, price, and ticker. The package also includes
+    analysis of sector weights in EUSA and USMV. Daily stock data from 
+    WRDS is also included, including calculations of rolling volatility
+    and beta. 
+License: None
+LazyData: TRUE
+Imports:
+    dplyr,
+    quantmod,
+    PerformanceAnalytics,
+    TTR,
+    zoo

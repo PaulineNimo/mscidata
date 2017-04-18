@@ -1,0 +1,15 @@
+--- 
+title: "Thesis"
+author: "John Gilheany"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::pdf_book
+documentclass: book
+bibliography: [book.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Thesis stuff"
+---
+
+# Opening Comments
+I woud like to thank David Kane and Michael Parzen for their contribution and help on my thesis. This would not have been possible without their assistance. 

@@ -1,0 +1,156 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Data Analysis 
+
+## Sector Weights
+First, sector weights were calculated over time for both EUSA and USMV. Plots were made by sector and displayed to compare the relative weights of EUSA and USMV. 
+
+*Sector Weight Summary Statistics:*
+
+```{r}
+data(usa_percent)
+data(minvol_percent)
+
+## Summary statistics of EUSA sector weights
+head(usa_percent)
+tail(usa_percent)
+summary(usa_percent)
+
+## Summary statistics of USMV sector weights
+head(minvol_percent)
+tail(minvol_percent)
+summary(minvol_percent)
+```
+
+*Sector Weights for EUSA and USMV:*
+
+```{r, echo = FALSE}
+library(ggplot2)
+library(mscidata)
+
+## Energy
+Eng1 <- usa_percent[which(usa_percent$sector_name=="Energy"), ]
+Eng2 <- minvol_percent[which(minvol_percent$sector_name=="Energy"), ]
+ggplot(Eng1, aes(date, percent, colour = "USA")) + geom_line() +  
+ggtitle("EUSA and USMV Energy Sector Weights") + xlab("Time") + ylab("Sector Weight") +
+geom_line(data = Eng2, aes(x=date, y=percent, colour="Min Vol"),show.legend = TRUE)
+
+## Finacials
+Fin1 <- usa_percent[which(usa_percent$sector_name=="Financials"), ]
+Fin2 <- minvol_percent[which(minvol_percent$sector_name=="Financials"), ]
+ggplot(Fin1, aes(date, percent, colour = "USA")) + geom_line() + 
+ggtitle("EUSA and USMV Financial Sector Weights") + xlab("Time") + 
+ylab("Sector Weight") + 
+geom_line(data = Fin2, aes(x=date, y=percent, colour="Min Vol"),show.legend = TRUE)
+
+## Consumer Staples
+ConStap1 <- usa_percent[which(usa_percent$sector_name=="Consumer Staples"), ]
+ConStap2 <- minvol_percent[which(minvol_percent$sector_name=="Consumer Staples"), ]
+ggplot(ConStap1, aes(date, percent, colour = "USA")) + geom_line() + 
+ggtitle("EUSA and USMV Consumer Staples Sector Weights") + xlab("Time") + 
+ylab("Sector Weight") + geom_line(data = ConStap2, aes(x=date, y=percent, 
+colour="Min Vol"),show.legend = TRUE)
+
+## Consumer Discretionary
+ConDis1 <- usa_percent[which(usa_percent$sector_name=="Consumer Discretionary"), ]
+ConDis2 <- minvol_percent[which(minvol_percent$sector_name=="Consumer Discretionary"), ]
+ggplot(ConDis1, aes(date, percent, colour = "USA")) + geom_line() + 
+ggtitle("EUSA and USMV Consumer Discretionary Sector Weights") + xlab("Time") + 
+ylab("Sector Weight") + geom_line(data = ConDis2, aes(x=date, y=percent, 
+colour="Min Vol"),show.legend = TRUE)
+
+## Health Care
+Health1 <- usa_percent[which(usa_percent$sector_name=="Health Care"), ]
+Health2 <- minvol_percent[which(minvol_percent$sector_name=="Health Care"), ]
+ggplot(Health1, aes(date, percent, colour = "USA")) + geom_line() + 
+ggtitle("EUSA and USMV Health Care Sector Weights") + xlab("Time") + 
+ylab("Sector Weight") + geom_line(data = Health2, aes(x=date, y=percent, 
+colour="Min Vol"),show.legend = TRUE)
+
+## Industrials
+Ind1 <- usa_percent[which(usa_percent$sector_name=="Industrials"), ]
+Ind2 <- minvol_percent[which(minvol_percent$sector_name=="Industrials"), ]
+ggplot(Ind1, aes(date, percent, colour = "USA")) + geom_line() + 
+ggtitle("EUSA and USMV Industrials Sector Weights") + xlab("Time") + 
+ylab("Sector Weight") + geom_line(data = Ind2, aes(x=date, y=percent, 
+colour="Min Vol"),show.legend = TRUE)
+
+## Information Technology
+IT1 <- usa_percent[which(usa_percent$sector_name=="Information Technology"), ]
+IT2 <- minvol_percent[which(minvol_percent$sector_name=="Information Technology"), ]
+ggplot(IT1, aes(date, percent, colour = "USA")) + geom_line() + 
+ggtitle("EUSA and USMV Information Technology Sector Weights") + 
+xlab("Time") + ylab("Sector Weight") + geom_line(data = IT2, aes(x=date, y=percent,
+colour="Min Vol"),show.legend = TRUE)
+
+## Materials
+Mat1 <- usa_percent[which(usa_percent$sector_name=="Materials"), ]
+Mat2 <- minvol_percent[which(minvol_percent$sector_name=="Materials"), ]
+ggplot(Mat1, aes(date, percent, colour = "USA")) + geom_line() + 
+ggtitle("EUSA and USMV Materials Sector Weights") + xlab("Time") + 
+ylab("Sector Weight") + geom_line(data = Mat2, aes(x=date, y=percent, 
+colour="Min Vol"),show.legend = TRUE)
+
+## Utilites
+Util1 <- usa_percent[which(usa_percent$sector_name=="Utilities"), ]
+Util2 <- minvol_percent[which(minvol_percent$sector_name=="Utilities"), ]
+ggplot(Util1, aes(date, percent, colour = "USA")) + geom_line() + 
+ggtitle("EUSA and USMV Utilities Sector Weights") + xlab("Time") + 
+ylab("Sector Weight") + geom_line(data = Util2, aes(x=date, y=percent, 
+colour="Min Vol"),show.legend = TRUE)
+
+## Telecommunication Services
+Telecom1 <- usa_percent[which(usa_percent$sector_name=="Telecommunications"), ]
+Telecom2 <- minvol_percent[which(minvol_percent$sector_name=="Telecommunications"), ]
+ggplot(Telecom1, aes(date, percent, colour = "USA")) + geom_line() + 
+ggtitle("EUSA and USMV Telecommunications Sector Weights") + 
+xlab("Time") + ylab("Sector Weight") + geom_line(data = Telecom2, aes(x=date, 
+y=percent, colour="Min Vol"),show.legend = TRUE)
+```
+
+## EUSA Constituent Trailing Volatilities 
+Data was collected from the past 10 years of the EUSA index. The data was collected from 12/31/2006 to 12/30/2016, was collected from WRDS for the 908 historical constituents of the USA Equal Weight (EUSA) index, of which USMV is derived. Each tickers' 252-day (annual) trailing volatility was calculated and a month end spagetti plot was produced.
+
+```{r, echo = FALSE}
+library(ggplot2)
+library(mscidata)
+
+head(monthly_rolling_vol)
+tail(monthly_rolling_vol)
+summary(monthly_rolling_vol)
+
+# Spaggeti plot for monthly trailing vol
+ggplot(monthly_rolling_vol, aes(Date, Volatility, group = Ticker)) + geom_line()
+```
+
+## EUSA Constituent Trailing Betas 
+Data was collected from the past 10 years of the EUSA index. The data was collected from 12/31/2006 to 12/30/2016, was collected from WRDS for the 908 historical constituents of the USA Equal Weight (EUSA) index, of which USMV is derived. Each tickers' 252-day (annual) trailing beta was calculated and a month end spagetti plot was produced.
+
+```{r, echo = FALSE}
+library(ggplot2)
+library(mscidata)
+
+head(monthly_beta_values)
+tail(monthly_beta_values)
+summary(monthly_beta_values)
+
+# Spaggeti plot for monthly Beta
+ggplot(monthly_beta_values, aes(Date, Beta, group = Ticker)) + geom_line()
+```
+
+## EUSA Constituent Price to Book Ratios 
+Data was collected from the past 10 years of the EUSA index. The data was collected from 12/31/2006 to 12/30/2016, was collected from WRDS for the 908 historical constituents of the USA Equal Weight (EUSA) index, of which USMV is derived. Each tickers' Price to Book ratio was calculated in two ways, to ensure accuracy. 
+
+```{r, echo = FALSE}
+library(ggplot2)
+library(mscidata)
+
+head(book_value_data)
+tail(book_value_data)
+summary(book_value_data)
+```
+
+

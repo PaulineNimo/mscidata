@@ -1,0 +1,15 @@
+# Bibliography 
+
+Vliet, P. V., & Koning, J. D. (2017). High returns from low risk: a remarkable stock market paradox.
+	
+Asness, C. S., Frazzini, A., Gormsen, N. J., & Pedersen, L. H. (2016). Betting Against Correlation: Testing Theories of the Low-Risk Effect.
+
+Huij, J., & Kyosev, G. (2016). Price Response to Factor Index Additions and Deletions.
+
+Baker, M., Bradley, B., & Wurgler, J. (2011). Benchmarks as limits to arbitrage: Understanding the low-volatility anomaly. Financial Analysts Journal, 67(1), 40-54.
+
+Frazzini, A., & Pedersen, L. H. (2014). Betting against beta. Journal of Financial Economics, 111(1), 1-25.
+
+Baker, M., Bradley, B., & Taliaferro, R. (2014). The low-risk anomaly: A decomposition into micro and macro effects. Financial Analysts Journal, 70(2), 43-58.
+
+

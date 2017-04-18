@@ -1,0 +1,22 @@
+# Data Collection and Summary Statistics
+
+Data was collected from ishares.com, and compiled from 10/31/2011 to 1/5/2017, for EUSA and USMV.
+
+```{r}
+# Load Packages and View the Data
+devtools::install_github("johngil/mscidata")
+library(mscidata)
+library(ggplot2)
+data(usa)
+data(minvol)
+
+## Summary statistics of EUSA Data
+head(usa)
+tail(usa)
+summary(usa)
+
+## Summary statistics of USMV Data
+head(minvol)
+tail(minvol)
+summary(minvol)
+```
